@@ -1,33 +1,26 @@
 <template>
-    <div>
-        <h2>Crypto Prices</h2>
-        <div class="data">
-            <div v-for="crypto in crypto_data" :key="index">
-                <p>{{ crypto }}</p>
-
-
-            </div>
-        </div>
+  <div>
+    <h2>Crypto Prices</h2>
+    <div class="data">
+      <div v-for="crypto in crypto_data" :key="index">
+        <p>Name : {{ crypto.name }}</p>
+        <p>Price ($):{{ crypto.priceUsd }}</p>
+        <p>Price ($):{{ crypto.changePercent24Hr }}</p>
+        <p>-------------------</p>
+      </div>
     </div>
+  </div>
 </template>
 
-<script>
-import axios from 'axios';
+<script setup>
+import axios from "axios";
+import { onMounted, ref } from "vue";
+import getCurrentData from "../services/getCurrentData.js";
 
-export default {
-  name: 'Table',
-  data() {
-    return {
-      crypto_data: [],
-    };
-  },
-  async created() {
-    try {
-      const response = await axios.get('http://localhost:5000/api');
-      this.crypto_data = response.data.data;
-    } catch (error) {
-      console.error(error);
-    }
-  },
-};
+const crypto_data = ref([]);
+
+onMounted(async () => {
+  crypto_data.value = await getCurrentData();
+  console.log(crypto_data.value);
+});
 </script>

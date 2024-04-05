@@ -1,7 +1,7 @@
 import express from 'express'
 import axios from 'axios'
 import cors from 'cors'
-import getData from './services/fetchData.js'
+import getData from './services/getData.js'
 
 const app = express();
 const PORT = process.env.PORT || 5000;
