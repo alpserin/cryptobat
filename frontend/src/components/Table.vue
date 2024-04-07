@@ -3,6 +3,7 @@
     <h2 class="prose md:prose-xl lg:prose-2xl font-bold text-center mt-4 mb-4">
       Crypto Prices
     </h2>
+
     <div class="sort-buttons mt-4 mb-8">
       <div class="inc-buttons">
         <button
@@ -10,21 +11,21 @@
           type="button"
           class="border hover:bg-gray mx-2 w-48"
         >
-          Increasing Price
+          Lowest Price
         </button>
         <button
           @click="sortByIncVolume"
           type="button"
           class="border hover:bg-gray mx-2 w-48"
         >
-          Increasing Volume
+          Lowest Volume
         </button>
         <button
           @click="sortByIncChange"
           type="button"
           class="border hover:bg-gray mx-2 w-48"
         >
-          Increasing Change
+          Lowest Change
         </button>
       </div>
       <div class="dec-buttons">
@@ -33,21 +34,21 @@
           type="button"
           class="border hover:bg-gray mx-2 w-48"
         >
-          Decreasing Price
+          Highest Price
         </button>
         <button
           @click="sortByDecVolume"
           type="button"
           class="border hover:bg-gray mx-2 w-48"
         >
-          Decreasing Volume
+          Highest Volume
         </button>
         <button
           @click="sortByDecChange"
           type="button"
           class="border hover:bg-gray mx-2 w-48"
         >
-          Decreasing Change
+          Highest Change
         </button>
       </div>
     </div>
@@ -57,8 +58,8 @@
         <tr>
           <th class="text-left">Name</th>
           <th class="text-left">Price ($)</th>
-          <th class="text-left">Change in 24hr</th>
-          <th class="text-left">Volume in 24hr</th>
+          <th class="text-left">Change (24hr)</th>
+          <th class="text-left">Volume (24hr)</th>
         </tr>
       </thead>
       <tbody v-if="paginatedData.length">
