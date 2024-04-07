@@ -3,29 +3,66 @@
     <h2>Crypto Prices</h2>
     <div class="sort-buttons">
       <div class="inc-buttons">
-        <button @click="sortByIncPrice">Increasing Price</button>
-        <button @click="sortByIncVolume">Increasing Volume</button>
+        <button
+          @click="sortByIncPrice"
+          type="button"
+          class="border hover:bg-gray"
+        >
+          Increasing Price
+        </button>
+        <button
+          @click="sortByIncVolume"
+          type="button"
+          class="border hover:bg-gray"
+        >
+          Increasing Volume
+        </button>
       </div>
       <div class="dec-buttons">
-        <button @click="sortByDecPrice">Decreasing Price</button>
-        <button @click="sortByDecVolume">Decreasing Volume</button>
+        <button
+          @click="sortByDecPrice"
+          type="button"
+          class="border hover:bg-gray"
+        >
+          Decreasing Price
+        </button>
+        <button
+          @click="sortByDecVolume"
+          type="button"
+          class="border hover:bg-gray"
+        >
+          Decreasing Volume
+        </button>
       </div>
     </div>
 
-    <div class="data">
-      <div v-for="(crypto, index) in paginatedData" :key="index">
-        <p>Name: {{ crypto.name }} ({{ crypto.symbol }})</p>
-        <p>Price ($): {{ roundValue(crypto.priceUsd) }}</p>
-        <p>Change in 24hr: {{ roundValue(crypto.changePercent24Hr) }} %</p>
-        <p>Volume in 24hr ($): {{ roundValue(crypto.volumeUsd24Hr) }}</p>
-        <p>-------------------</p>
-      </div>
-    </div>
+    <table class="table-fixed">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price ($)</th>
+          <th>Change in 24hr</th>
+          <th>Volume in 24hr</th>
+        </tr>
+      </thead>
+      <tbody v-if="paginatedData.length">
+        <tr v-for="(crypto, index) in paginatedData" :key="index">
+          <td>{{ crypto.name }} ({{ crypto.symbol }})</td>
+          <td>{{ roundValue(crypto.priceUsd) }}</td>
+          <td>{{ roundValue(crypto.changePercent24Hr) }} %</td>
+          <td>{{ roundValue(crypto.volumeUsd24Hr) }}</td>
+        </tr>
+      </tbody>
+    </table>
 
     <div class="page-buttons">
-      <button @click="prevPage">Previous</button>
+      <button @click="prevPage" type="button" class="border hover:bg-gray">
+        Previous
+      </button>
       <span>Page {{ currentPage }} of {{ totalPages }}</span>
-      <button @click="nextPage">Next</button>
+      <button @click="nextPage" type="button" class="border hover:bg-gray">
+        Next
+      </button>
     </div>
   </div>
 </template>
@@ -82,17 +119,21 @@ const sortBy = ref("");
 
 function sortByIncPrice() {
   sortBy.value = "priceUsd";
+  currentPage.value = 1;
 }
 
 function sortByDecPrice() {
   sortBy.value = "-priceUsd";
+  currentPage.value = 1;
 }
 
 function sortByIncVolume() {
   sortBy.value = "volumeUsd24Hr";
+  currentPage.value = 1;
 }
 
 function sortByDecVolume() {
   sortBy.value = "-volumeUsd24Hr";
+  currentPage.value = 1;
 }
 </script>
