@@ -1,19 +1,21 @@
 <template>
-  <div>
-    <h2>Crypto Prices</h2>
-    <div class="sort-buttons">
+  <div class="flex flex-col items-center">
+    <h2 class="prose md:prose-xl lg:prose-2xl font-bold text-center mt-4 mb-4">
+      Crypto Prices
+    </h2>
+    <div class="sort-buttons mt-4 mb-8">
       <div class="inc-buttons">
         <button
           @click="sortByIncPrice"
           type="button"
-          class="border hover:bg-gray"
+          class="border hover:bg-gray mx-2 w-52"
         >
           Increasing Price
         </button>
         <button
           @click="sortByIncVolume"
           type="button"
-          class="border hover:bg-gray"
+          class="border hover:bg-gray mx-2 w-52"
         >
           Increasing Volume
         </button>
@@ -22,14 +24,14 @@
         <button
           @click="sortByDecPrice"
           type="button"
-          class="border hover:bg-gray"
+          class="border hover:bg-gray mx-2 w-52"
         >
           Decreasing Price
         </button>
         <button
           @click="sortByDecVolume"
           type="button"
-          class="border hover:bg-gray"
+          class="border hover:bg-gray mx-2 w-52"
         >
           Decreasing Volume
         </button>
@@ -39,8 +41,8 @@
     <table class="table-fixed">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Price ($)</th>
+          <th class="w-10px">Name</th>
+          <th @click="sortByPrice" class="hover:cursor-pointer">Price ($)</th>
           <th>Change in 24hr</th>
           <th>Volume in 24hr</th>
         </tr>
@@ -55,12 +57,20 @@
       </tbody>
     </table>
 
-    <div class="page-buttons">
-      <button @click="prevPage" type="button" class="border hover:bg-gray">
+    <div class="page-buttons mt-8">
+      <button
+        @click="prevPage"
+        type="button"
+        class="border hover:bg-gray mx-2 w-52"
+      >
         Previous
       </button>
       <span>Page {{ currentPage }} of {{ totalPages }}</span>
-      <button @click="nextPage" type="button" class="border hover:bg-gray">
+      <button
+        @click="nextPage"
+        type="button"
+        class="border hover:bg-gray mx-2 w-52"
+      >
         Next
       </button>
     </div>
@@ -83,9 +93,14 @@ function roundValue(number) {
 }
 
 const sortedData = computed(() => {
-  return [...cryptoData.value].sort(
-    (a, b) => a[sortBy.value] - b[sortBy.value]
-  );
+  let sortedArray = [...cryptoData.value];
+  if (sortBy.value.startsWith("-")) {
+    const prop = sortBy.value.slice(1);
+    sortedArray.sort((a, b) => b[prop] - a[prop]); // Sort in descending order
+  } else {
+    sortedArray.sort((a, b) => a[sortBy.value] - b[sortBy.value]); // Sort in ascending order
+  }
+  return sortedArray;
 });
 
 // PAGINATION
@@ -119,21 +134,19 @@ const sortBy = ref("");
 
 function sortByIncPrice() {
   sortBy.value = "priceUsd";
-  currentPage.value = 1;
 }
 
 function sortByDecPrice() {
   sortBy.value = "-priceUsd";
-  currentPage.value = 1;
 }
 
 function sortByIncVolume() {
   sortBy.value = "volumeUsd24Hr";
-  currentPage.value = 1;
 }
 
 function sortByDecVolume() {
   sortBy.value = "-volumeUsd24Hr";
-  currentPage.value = 1;
 }
 </script>
+
+<style scoped></style>
