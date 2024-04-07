@@ -8,43 +8,57 @@
         <button
           @click="sortByIncPrice"
           type="button"
-          class="border hover:bg-gray mx-2 w-52"
+          class="border hover:bg-gray mx-2 w-48"
         >
           Increasing Price
         </button>
         <button
           @click="sortByIncVolume"
           type="button"
-          class="border hover:bg-gray mx-2 w-52"
+          class="border hover:bg-gray mx-2 w-48"
         >
           Increasing Volume
+        </button>
+        <button
+          @click="sortByIncChange"
+          type="button"
+          class="border hover:bg-gray mx-2 w-48"
+        >
+          Increasing Change
         </button>
       </div>
       <div class="dec-buttons">
         <button
           @click="sortByDecPrice"
           type="button"
-          class="border hover:bg-gray mx-2 w-52"
+          class="border hover:bg-gray mx-2 w-48"
         >
           Decreasing Price
         </button>
         <button
           @click="sortByDecVolume"
           type="button"
-          class="border hover:bg-gray mx-2 w-52"
+          class="border hover:bg-gray mx-2 w-48"
         >
           Decreasing Volume
+        </button>
+        <button
+          @click="sortByDecChange"
+          type="button"
+          class="border hover:bg-gray mx-2 w-48"
+        >
+          Decreasing Change
         </button>
       </div>
     </div>
 
-    <table class="table-fixed">
+    <table class="table-auto w-4/6">
       <thead>
         <tr>
-          <th class="w-10px">Name</th>
-          <th @click="sortByPrice" class="hover:cursor-pointer">Price ($)</th>
-          <th>Change in 24hr</th>
-          <th>Volume in 24hr</th>
+          <th class="text-left">Name</th>
+          <th class="text-left">Price ($)</th>
+          <th class="text-left">Change in 24hr</th>
+          <th class="text-left">Volume in 24hr</th>
         </tr>
       </thead>
       <tbody v-if="paginatedData.length">
@@ -57,11 +71,11 @@
       </tbody>
     </table>
 
-    <div class="page-buttons mt-8">
+    <div class="page-buttons mt-16">
       <button
         @click="prevPage"
         type="button"
-        class="border hover:bg-gray mx-2 w-52"
+        class="border hover:bg-gray mx-2 w-48"
       >
         Previous
       </button>
@@ -69,7 +83,7 @@
       <button
         @click="nextPage"
         type="button"
-        class="border hover:bg-gray mx-2 w-52"
+        class="border hover:bg-gray mx-2 w-48"
       >
         Next
       </button>
@@ -146,6 +160,14 @@ function sortByIncVolume() {
 
 function sortByDecVolume() {
   sortBy.value = "-volumeUsd24Hr";
+}
+
+function sortByIncChange() {
+  sortBy.value = "changePercent24Hr";
+}
+
+function sortByDecChange() {
+  sortBy.value = "-changePercent24Hr";
 }
 </script>
 
