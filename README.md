@@ -15,7 +15,7 @@ git clone https://github.com/alpserin/cryptobat
 cd into it:
 
 ```shell
-cd crpytobat
+cd cryptobat
 ```
 
 Install dependencies:
