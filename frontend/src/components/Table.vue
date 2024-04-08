@@ -9,21 +9,21 @@
         <button
           @click="sortByIncPrice"
           type="button"
-          class="border hover:bg-gray mx-2 w-48"
+          class="border hover:font-bold mx-2 w-48"
         >
           Lowest Price
         </button>
         <button
           @click="sortByIncVolume"
           type="button"
-          class="border hover:bg-gray mx-2 w-48"
+          class="border hover:font-bold mx-2 w-48"
         >
           Lowest Volume
         </button>
         <button
           @click="sortByIncChange"
           type="button"
-          class="border hover:bg-gray mx-2 w-48"
+          class="border hover:font-bold mx-2 w-48"
         >
           Lowest Change
         </button>
@@ -32,28 +32,28 @@
         <button
           @click="sortByDecPrice"
           type="button"
-          class="border hover:bg-gray mx-2 w-48"
+          class="border hover:font-bold mx-2 w-48"
         >
           Highest Price
         </button>
         <button
           @click="sortByDecVolume"
           type="button"
-          class="border hover:bg-gray mx-2 w-48"
+          class="border hover:font-bold mx-2 w-48"
         >
           Highest Volume
         </button>
         <button
           @click="sortByDecChange"
           type="button"
-          class="border hover:bg-gray mx-2 w-48"
+          class="border hover:font-bold mx-2 w-48"
         >
           Highest Change
         </button>
       </div>
     </div>
 
-    <table class="table-auto w-4/6">
+    <table class="table-fixed w-4/6">
       <thead>
         <tr>
           <th class="text-left">Name</th>
@@ -66,7 +66,16 @@
         <tr v-for="(crypto, index) in paginatedData" :key="index">
           <td>{{ crypto.name }} ({{ crypto.symbol }})</td>
           <td>{{ roundValue(crypto.priceUsd) }}</td>
-          <td>{{ roundValue(crypto.changePercent24Hr) }} %</td>
+          <td
+            :class="[
+              {
+                'text-green-700': crypto.changePercent24Hr >= 0,
+                'text-red-700': crypto.changePercent24Hr < 0,
+              },
+            ]"
+          >
+            {{ roundValue(crypto.changePercent24Hr) }} %
+          </td>
           <td>{{ roundValue(crypto.volumeUsd24Hr) }}</td>
         </tr>
       </tbody>
@@ -76,7 +85,7 @@
       <button
         @click="prevPage"
         type="button"
-        class="border hover:bg-gray mx-2 w-48"
+        class="border hover:font-bold mx-2 w-48"
       >
         Previous
       </button>
@@ -84,7 +93,7 @@
       <button
         @click="nextPage"
         type="button"
-        class="border hover:bg-gray mx-2 w-48"
+        class="border hover:font-bold mx-2 w-48"
       >
         Next
       </button>

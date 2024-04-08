@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 const plugin = require("tailwindcss/plugin");
+const colors = require("tailwindcss/colors");
 
 export default {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
@@ -22,14 +23,17 @@ export default {
       // => @media (min-width: 1536px) { ... }
     },
     colors: {
-      blue: "#1fb6ff",
-      purple: "#7e5bef",
-      pink: "#ff49db",
-      orange: "#ff7849",
-      green: "#13ce66",
-      yellow: "#ffc82c",
+      transparent: "transparent",
+      current: "currentColor",
+      red: colors.red,
+      black: colors.black,
+      white: colors.white,
+      gray: colors.slate,
+      green: colors.emerald,
+      purple: colors.violet,
+      yellow: colors.amber,
+      pink: colors.fuchsia,
       "gray-dark": "#273444",
-      gray: "#8492a6",
       "gray-light": "#d3dce6",
     },
     fontFamily: {
