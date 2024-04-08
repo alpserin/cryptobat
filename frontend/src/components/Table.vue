@@ -9,21 +9,21 @@
         <button
           @click="sortByIncPrice"
           type="button"
-          class="border hover:font-bold mx-2 w-48"
+          class="border border-gray-300 hover:font-bold mx-2 w-48"
         >
           Lowest Price
         </button>
         <button
           @click="sortByIncVolume"
           type="button"
-          class="border hover:font-bold mx-2 w-48"
+          class="border border-gray-300 hover:font-bold mx-2 w-48"
         >
           Lowest Volume
         </button>
         <button
           @click="sortByIncChange"
           type="button"
-          class="border hover:font-bold mx-2 w-48"
+          class="border border-gray-300 hover:font-bold mx-2 w-48"
         >
           Lowest Change
         </button>
@@ -32,68 +32,72 @@
         <button
           @click="sortByDecPrice"
           type="button"
-          class="border hover:font-bold mx-2 w-48"
+          class="border border-gray-300 hover:font-bold mx-2 w-48"
         >
           Highest Price
         </button>
         <button
           @click="sortByDecVolume"
           type="button"
-          class="border hover:font-bold mx-2 w-48"
+          class="border border-gray-300 hover:font-bold mx-2 w-48"
         >
           Highest Volume
         </button>
         <button
           @click="sortByDecChange"
           type="button"
-          class="border hover:font-bold mx-2 w-48"
+          class="border border-gray-300 hover:font-bold mx-2 w-48"
         >
           Highest Change
         </button>
       </div>
     </div>
 
-    <table class="table-fixed w-4/6">
-      <thead>
-        <tr>
-          <th class="text-left">Name</th>
-          <th class="text-left">Price ($)</th>
-          <th class="text-left">Change (24hr)</th>
-          <th class="text-left">Volume (24hr)</th>
-        </tr>
-      </thead>
-      <tbody v-if="paginatedData.length">
-        <tr v-for="(crypto, index) in paginatedData" :key="index">
-          <td>{{ crypto.name }} ({{ crypto.symbol }})</td>
-          <td>{{ roundValue(crypto.priceUsd) }}</td>
-          <td
-            :class="[
-              {
-                'text-green-700': crypto.changePercent24Hr >= 0,
-                'text-red-700': crypto.changePercent24Hr < 0,
-              },
-            ]"
-          >
-            {{ roundValue(crypto.changePercent24Hr) }} %
-          </td>
-          <td>{{ roundValue(crypto.volumeUsd24Hr) }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="flex align-middle justify-center h-96">
+      <table class="table-fixed w-4/6">
+        <thead>
+          <tr>
+            <th class="text-left">Name</th>
+            <th class="text-left">Price ($)</th>
+            <th class="text-left">Change (24hr)</th>
+            <th class="text-left">Volume (24hr)</th>
+          </tr>
+        </thead>
+        <tbody v-if="paginatedData.length">
+          <tr v-for="(crypto, index) in paginatedData" :key="index">
+            <td>{{ crypto.name }} ({{ crypto.symbol }})</td>
+            <td>{{ roundValue(crypto.priceUsd) }}</td>
+            <td
+              :class="[
+                {
+                  'text-green-700': crypto.changePercent24Hr >= 0,
+                  'text-red-700': crypto.changePercent24Hr < 0,
+                },
+              ]"
+            >
+              {{ roundValue(crypto.changePercent24Hr) }} %
+            </td>
+            <td>{{ roundValue(crypto.volumeUsd24Hr) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="page-buttons mt-16">
+    <div class="mt-16 flex">
       <button
         @click="prevPage"
         type="button"
-        class="border hover:font-bold mx-2 w-48"
+        class="border border-gray-300 hover:font-bold w-48"
       >
         Previous
       </button>
-      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <div class="w-40 flex align-middle justify-center">
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      </div>
       <button
         @click="nextPage"
         type="button"
-        class="border hover:font-bold mx-2 w-48"
+        class="border border-gray-300 hover:font-bold w-48"
       >
         Next
       </button>
