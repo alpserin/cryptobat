@@ -48,11 +48,13 @@
     </div>
 
     <div class="mt-16 flex">
+      <Button text="<<" :onClick="firstPage" class="w-10" />
       <Button text="Previous" :onClick="prevPage" />
       <div class="w-40 flex align-middle justify-center">
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
       </div>
       <Button text="Next" :onClick="nextPage" />
+      <Button text=">>" :onClick="lastPage" class="w-10" />
     </div>
   </div>
 </template>
@@ -108,6 +110,14 @@ function nextPage() {
   if (currentPage.value < totalPages.value) {
     currentPage.value++;
   }
+}
+
+function firstPage() {
+  currentPage.value = 1;
+}
+
+function lastPage() {
+  currentPage.value = totalPages.value;
 }
 
 // SORTING
