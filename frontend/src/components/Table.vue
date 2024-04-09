@@ -6,50 +6,14 @@
 
     <div class="sort-buttons mt-4 mb-8">
       <div class="inc-buttons">
-        <button
-          @click="sortByIncPrice"
-          type="button"
-          class="border border-gray-300 hover:font-bold mx-2 w-48"
-        >
-          Lowest Price
-        </button>
-        <button
-          @click="sortByIncVolume"
-          type="button"
-          class="border border-gray-300 hover:font-bold mx-2 w-48"
-        >
-          Lowest Volume
-        </button>
-        <button
-          @click="sortByIncChange"
-          type="button"
-          class="border border-gray-300 hover:font-bold mx-2 w-48"
-        >
-          Lowest Change
-        </button>
+        <Button text="Lowest Price" :onClick="sortByIncPrice" />
+        <Button text="Lowest Volume" :onClick="sortByIncVolume" />
+        <Button text="Lowest Change" :onClick="sortByIncChange" />
       </div>
       <div class="dec-buttons">
-        <button
-          @click="sortByDecPrice"
-          type="button"
-          class="border border-gray-300 hover:font-bold mx-2 w-48"
-        >
-          Highest Price
-        </button>
-        <button
-          @click="sortByDecVolume"
-          type="button"
-          class="border border-gray-300 hover:font-bold mx-2 w-48"
-        >
-          Highest Volume
-        </button>
-        <button
-          @click="sortByDecChange"
-          type="button"
-          class="border border-gray-300 hover:font-bold mx-2 w-48"
-        >
-          Highest Change
-        </button>
+        <Button text="Highest Price" :onClick="sortByDecPrice" />
+        <Button text="Highest Volume" :onClick="sortByDecVolume" />
+        <Button text="Highest Change" :onClick="sortByDecChange" />
       </div>
     </div>
 
@@ -84,23 +48,11 @@
     </div>
 
     <div class="mt-16 flex">
-      <button
-        @click="prevPage"
-        type="button"
-        class="border border-gray-300 hover:font-bold w-48"
-      >
-        Previous
-      </button>
+      <Button text="Previous" :onClick="prevPage" />
       <div class="w-40 flex align-middle justify-center">
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
       </div>
-      <button
-        @click="nextPage"
-        type="button"
-        class="border border-gray-300 hover:font-bold w-48"
-      >
-        Next
-      </button>
+      <Button text="Next" :onClick="nextPage" />
     </div>
   </div>
 </template>
@@ -109,6 +61,7 @@
 import axios from "axios";
 import { computed, onMounted, ref } from "vue";
 import getCurrentData from "../services/getCurrentData.js";
+import Button from "./Button.vue";
 
 const cryptoData = ref([]);
 
