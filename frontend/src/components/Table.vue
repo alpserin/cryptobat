@@ -22,9 +22,15 @@
         <thead>
           <tr>
             <th class="text-left">Name</th>
-            <th class="text-left">Price ($)</th>
-            <th class="text-left">Change (24hr)</th>
-            <th class="text-left">Volume (24hr)</th>
+            <th class="text-left hover:cursor-pointer" :onClick="sortPrice">
+              Price ($)
+            </th>
+            <th class="text-left hover:cursor-pointer" :onClick="sortChange">
+              Change (24hr)
+            </th>
+            <th class="text-left hover:cursor-pointer" :onClick="sortVolume">
+              Volume (24hr)
+            </th>
           </tr>
         </thead>
         <tbody v-if="paginatedData.length">
@@ -87,6 +93,7 @@ const sortedData = computed(() => {
 });
 
 // PAGINATION
+
 const itemsPerPage = 10;
 let currentPage = ref(1);
 
@@ -99,6 +106,8 @@ const paginatedData = computed(() => {
 const totalPages = computed(() => {
   return Math.ceil(sortedData.value.length / itemsPerPage);
 });
+
+// PAGE NAVIGATION
 
 function prevPage() {
   if (currentPage.value > 1) {
@@ -146,6 +155,36 @@ function sortByIncChange() {
 function sortByDecChange() {
   sortBy.value = "-changePercent24Hr";
 }
-</script>
 
-<style scoped></style>
+// New Sorting
+
+function sortPrice() {
+  if (sortBy.value === "") {
+    sortBy.value = "-priceUsd";
+  } else if (sortBy.value === "-priceUsd") {
+    sortBy.value = "priceUsd";
+  } else {
+    sortBy.value = "-priceUsd";
+  }
+}
+
+function sortChange() {
+  if (sortBy.value === "") {
+    sortBy.value = "-changePercent24Hr";
+  } else if (sortBy.value === "-changePercent24Hr") {
+    sortBy.value = "changePercent24Hr";
+  } else {
+    sortBy.value = "-changePercent24Hr";
+  }
+}
+
+function sortVolume() {
+  if (sortBy.value === "") {
+    sortBy.value = "-volumeUsd24Hr";
+  } else if (sortBy.value === "-volumeUsd24Hr") {
+    sortBy.value = "volumeUsd24Hr";
+  } else {
+    sortBy.value = "-volumeUsd24Hr";
+  }
+}
+</script>

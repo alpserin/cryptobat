@@ -2,4 +2,11 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import "./index.css";
 
-createApp(App).mount("#app");
+import { OhVueIcon, addIcons } from "oh-vue-icons";
+import { BiCaretDownFill, BiCaretUpFill } from "oh-vue-icons/icons";
+
+addIcons(BiCaretDownFill, BiCaretUpFill);
+
+const app = createApp(App);
+app.component("v-icon", OhVueIcon);
+app.mount("#app");
