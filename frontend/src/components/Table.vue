@@ -4,32 +4,49 @@
       Crypto Prices
     </h2>
 
-    <div class="sort-buttons mt-4 mb-8">
-      <div class="inc-buttons">
-        <Button text="Lowest Price" :onClick="sortByIncPrice" />
-        <Button text="Lowest Volume" :onClick="sortByIncVolume" />
-        <Button text="Lowest Change" :onClick="sortByIncChange" />
-      </div>
-      <div class="dec-buttons">
-        <Button text="Highest Price" :onClick="sortByDecPrice" />
-        <Button text="Highest Volume" :onClick="sortByDecVolume" />
-        <Button text="Highest Change" :onClick="sortByDecChange" />
-      </div>
-    </div>
-
     <div class="flex align-middle justify-center h-96">
       <table class="table-fixed w-4/6">
         <thead>
           <tr>
             <th class="text-left">Name</th>
             <th class="text-left hover:cursor-pointer" :onClick="sortPrice">
-              Price ($)
+              <span class="flex items-center">
+                Price ($)
+                <v-icon
+                  name="bi-caret-down-fill"
+                  v-if="sortBy === '-priceUsd'"
+                ></v-icon>
+                <v-icon
+                  name="bi-caret-up-fill"
+                  v-if="sortBy === 'priceUsd'"
+                ></v-icon>
+              </span>
             </th>
             <th class="text-left hover:cursor-pointer" :onClick="sortChange">
-              Change (24hr)
+              <span class="flex items-center">
+                Change (24hr)
+                <v-icon
+                  name="bi-caret-down-fill"
+                  v-if="sortBy === '-changePercent24Hr'"
+                ></v-icon>
+                <v-icon
+                  name="bi-caret-up-fill"
+                  v-if="sortBy === 'changePercent24Hr'"
+                ></v-icon>
+              </span>
             </th>
             <th class="text-left hover:cursor-pointer" :onClick="sortVolume">
-              Volume (24hr)
+              <span class="flex items-center">
+                Volume (24hr)
+                <v-icon
+                  name="bi-caret-down-fill"
+                  v-if="sortBy === '-volumeUsd24Hr'"
+                ></v-icon>
+                <v-icon
+                  name="bi-caret-up-fill"
+                  v-if="sortBy === 'volumeUsd24Hr'"
+                ></v-icon>
+              </span>
             </th>
           </tr>
         </thead>
@@ -131,32 +148,6 @@ function lastPage() {
 
 // SORTING
 const sortBy = ref("");
-
-function sortByIncPrice() {
-  sortBy.value = "priceUsd";
-}
-
-function sortByDecPrice() {
-  sortBy.value = "-priceUsd";
-}
-
-function sortByIncVolume() {
-  sortBy.value = "volumeUsd24Hr";
-}
-
-function sortByDecVolume() {
-  sortBy.value = "-volumeUsd24Hr";
-}
-
-function sortByIncChange() {
-  sortBy.value = "changePercent24Hr";
-}
-
-function sortByDecChange() {
-  sortBy.value = "-changePercent24Hr";
-}
-
-// New Sorting
 
 function sortPrice() {
   if (sortBy.value === "") {
