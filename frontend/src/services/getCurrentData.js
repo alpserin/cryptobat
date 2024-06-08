@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getCurrentData = async () => {
   try {
-    const response = await axios.get("http://localhost:5000/api/currentdata");
+    const response = await axios.get("http://localhost:5000/api/price");
     return response.data.data.data;
   } catch (error) {
     console.error(error);
