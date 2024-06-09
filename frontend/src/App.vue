@@ -1,14 +1,10 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/signup">signup</router-link>
-      <router-link to="/login">login</router-link>
-    </nav>
-    <router-view></router-view>
+    <Navbar></Navbar>
 </div>
 </template>
 
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
+import Navbar from './components/Navbar.vue';
 </script>
+

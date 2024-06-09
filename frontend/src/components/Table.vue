@@ -1,17 +1,16 @@
 <template>
   <div class="flex flex-col items-center">
-    <h2 class="prose md:prose-xl lg:prose-2xl font-bold text-center mt-4 mb-4">
-      Crypto Prices
-    </h2>
 
     <div class="flex align-middle justify-center h-96">
       <table class="table-fixed w-4/6">
         <thead>
           <tr>
-            <th class="text-left">Name</th>
+            <th class="text-left">
+              Name
+            </th>
             <th class="text-left hover:cursor-pointer" :onClick="sortPrice">
               <span class="flex items-center">
-                Price ($)
+                <span class="column">Price ($)</span>
                 <v-icon
                   name="bi-caret-down-fill"
                   v-if="sortBy === '-priceUsd'"
@@ -24,7 +23,7 @@
             </th>
             <th class="text-left hover:cursor-pointer" :onClick="sortChange">
               <span class="flex items-center">
-                Change (24hr)
+                <span class="column">Change (24hr)</span>
                 <v-icon
                   name="bi-caret-down-fill"
                   v-if="sortBy === '-changePercent24Hr'"
@@ -37,7 +36,7 @@
             </th>
             <th class="text-left hover:cursor-pointer" :onClick="sortVolume">
               <span class="flex items-center">
-                Volume (24hr)
+                <span class="column">Volume (24hr)</span>
                 <v-icon
                   name="bi-caret-down-fill"
                   v-if="sortBy === '-volumeUsd24Hr'"
@@ -179,3 +178,9 @@ function sortVolume() {
   }
 }
 </script>
+
+<style scoped>
+.column:hover {
+  background-color: rgb(244, 244, 244);
+}
+</style>
